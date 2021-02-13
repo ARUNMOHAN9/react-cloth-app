@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { lazy, Suspense } from 'react';
 import './App.scss';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense fallback={<CircularProgress />}>
+        <Switch>
+          <Route path='/' exact>
+            <Redirect to='/login' />
+          </Route>
+          <Route path='/login' component={lazy(() => import('./modules/login'))} />
+          <Route path='/dashboard' component={lazy(() => import('./modules/dashboard'))} />
+          <Route path='*' component={lazy(() => import('./modules/login'))} />
+        </Switch>
+      </Suspense>
+    </Router>
   );
 }
 
