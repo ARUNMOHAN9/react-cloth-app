@@ -13,6 +13,7 @@ function App() {
           <Redirect to='/home' />
         </Route>
         <Route path='/home' component={lazy(() => import('./modules/home'))} />
+        <Route path='/login' component={lazy(() => import('./modules/login'))} />
         <Route path='/shop' component={lazy(() => import('./modules/shop'))} />
       </Switch>
     </Suspense>
