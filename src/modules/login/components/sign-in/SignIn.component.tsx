@@ -20,6 +20,7 @@ const SignIn = () => {
                     <span>Sign in with your email and password</span>
                     <Box mt={2} />
                     <form onSubmit={onHandleSubmit}>
+                        <Box mt={2} mb={2} />
                         <Grid item xs={12}>
                             <TextField
                                 id="email"
@@ -45,7 +46,7 @@ const SignIn = () => {
                         </Grid>
 
                         <Box mb={2} />
-                        <CustomButton type="submit" size="large">Login</CustomButton>
+                        <CustomButton type="submit" size="medium">Login</CustomButton>
                     </form>
                 </CardContent>
             </Card>

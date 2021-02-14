@@ -41,7 +41,9 @@ const Header = () => {
                         CONTACT
                     </Link>
                     <Box ml={2} />
-                    <Button color="inherit" style={{ fontSize: '1.6rem' }}>Login</Button>
+                    <Button color="inherit" size="large">
+                        <RouterLink className="nav-link" to='/login'>Login</RouterLink>
+                    </Button>
                 </Toolbar>
             </AppBar>
             <div className={classes.offset} />

@@ -4,14 +4,23 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { CssBaseline, StylesProvider } from '@material-ui/core';
+import { createMuiTheme, CssBaseline, StylesProvider, ThemeProvider } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  typography: {
+    // Tell Material-UI what's the font-size on the html element is.
+    htmlFontSize: 10,
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <StylesProvider injectFirst>
         <CssBaseline />
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </StylesProvider>
     </Router>
   </React.StrictMode>,
