@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  margin: 0 7.5px 15px;
+  margin: 0 0.75rem 1.5rem;
   overflow: hidden;
 
   &:hover {
@@ -27,11 +27,11 @@
   }
 
   &:first-child {
-    margin-right: 7.5px;
+    margin-right: 0.75rem;
   }
 
   &:last-child {
-    margin-left: 7.5px;
+    margin-left: 0.75rem;
   }
 
   .background-image {
@@ -43,7 +43,7 @@
 
   .content {
     height: 90px;
-    padding: 0 25px;
+    padding: 0 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,15 +55,15 @@
 
     .title {
       font-weight: bold;
-      margin: 0 6px 0;
-      font-size: 22px;
+      margin: 0 0.6rem 0;
+      font-size: 2.2rem;
       color: #4a4a4a;
       text-transform: uppercase;
     }
 
     .subtitle {
       font-weight: lighter;
-      font-size: 16px;
+      font-size: 1.6rem;
     }
   }
 }
