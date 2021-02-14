@@ -4,14 +4,14 @@ import './MenuItem.styles.scss';
 
 interface IProps {
     title: string;
-    imgUrl: string;
-    size: string | undefined;
+    imageUrl: string;
+    size?: string;
 }
 
-const MenuItemComponent = ({ title, imgUrl, size }: IProps) => {
+const MenuItemComponent = ({ title, imageUrl, size }: IProps) => {
     return (
         <div className={`${size} menu-item`}>
-            <div className='background-image' style={{ backgroundImage: `url(${imgUrl})` }}>
+            <div className='background-image' style={{ backgroundImage: `url(${imageUrl})` }}>
             </div>
             <div className='content'>
                 <div className='title'>{title}</div>

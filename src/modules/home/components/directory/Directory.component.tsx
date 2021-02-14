@@ -9,7 +9,7 @@ const DirectoryComponent = () => {
     return (
         <div className='directory-menu'>
             {
-                SECTIONS.map(section => <MenuItemComponent title={section.title} key={section.id} imgUrl={section.imageUrl} size={section.size} />)
+                SECTIONS.map(({ id, ...otherProps }) => <MenuItemComponent key={id} {...otherProps} />)
             }
         </div>
     )
