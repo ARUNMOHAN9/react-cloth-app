@@ -9,11 +9,9 @@ function App() {
       <Suspense fallback={<CircularProgress />}>
         <Switch>
           <Route path='/' exact>
-            <Redirect to='/login' />
+            <Redirect to='/home' />
           </Route>
-          <Route path='/login' component={lazy(() => import('./modules/login'))} />
-          <Route path='/dashboard' component={lazy(() => import('./modules/dashboard'))} />
-          <Route path='*' component={lazy(() => import('./modules/login'))} />
+          <Route path='/home' component={lazy(() => import('./modules/home'))} />
         </Switch>
       </Suspense>
     </Router>
