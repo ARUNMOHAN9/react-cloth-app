@@ -1,13 +1,25 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import './App.scss';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Header from './modules/shared/components/header/Header.component';
+import { auth } from './modules/login/services/firebase/firebase.service';
 
-function App() {
+const App = () => {
+
+  const [currentUser, setCurrentUser] = useState<any>(null);
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      setCurrentUser(user);
+      console.log(user);
+    });
+  }, [])
+
+
   return (
     <Suspense fallback={<CircularProgress />}>
-      <Header />
+      <Header currentUser={currentUser} />
       <Switch>
         <Route path='/' exact>
           <Redirect to='/home' />

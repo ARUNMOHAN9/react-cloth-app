@@ -1,6 +1,9 @@
 import { Box, Card, CardContent, Container, Grid, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import CustomButton from '../../../shared/components/custom-btn/CustomBtn.component';
+import { signInWithGoogle } from '../../services/firebase/firebase.service';
+
+import './SignIn.styles.scss';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -46,7 +49,10 @@ const SignIn = () => {
                         </Grid>
 
                         <Box mb={2} />
-                        <CustomButton type="submit" size="medium">Login</CustomButton>
+                        <div className="btn-wrapper">
+                            <CustomButton type="submit" color="secondary" size="medium">Sign in</CustomButton>
+                            <CustomButton size="medium" onClick={signInWithGoogle}>Sign in with google</CustomButton>
+                        </div>
                     </form>
                 </CardContent>
             </Card>

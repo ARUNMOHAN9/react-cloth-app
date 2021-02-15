@@ -7,6 +7,7 @@ import { ReactComponent as Logo } from '../../../../assets/images/crown.svg'
 import './Header.styles.scss';
 import { Box, Link } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
+import { auth } from '../../../login/services/firebase/firebase.service';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Header = () => {
+interface Iprops {
+    currentUser: any;
+}
+
+const Header = ({ currentUser }: Iprops) => {
     const classes = useStyles();
 
     return (
@@ -42,7 +47,11 @@ const Header = () => {
                     </Link>
                     <Box ml={2} />
                     <Button color="inherit" size="large">
-                        <RouterLink className="nav-link" to='/login'>Login</RouterLink>
+                        {
+                            currentUser
+                                ? <div className="nav-link" onClick={() => auth.signOut()}>Sign Out</div>
+                                : <RouterLink className="nav-link" to='/login'>Sign In</RouterLink>
+                        }
                     </Button>
                 </Toolbar>
             </AppBar>
