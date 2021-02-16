@@ -17,16 +17,28 @@ const App = () => {
   }, [])
 
   const monitorAuthChange = () => {
+
     const authChangeData: AuthChange = {
-      nextOrObserver: user => {
-        setCurrentUser(user);
-        console.log(user);
+      nextOrObserver: async user => {
+
+        if (user) {
+          const userRef = await firebaseCtx?.addUser(user);
+
+          userRef?.onSnapshot(snapshot => {
+            setCurrentUser({
+              id: snapshot.id,
+              ...snapshot.data()
+            });
+            console.log(snapshot);
+          });
+
+          console.log(currentUser);
+        }
       }
     }
 
     firebaseCtx?.monitorAuthChange(authChangeData);
   }
-
 
   return (
     <Suspense fallback={<CircularProgress />}>
