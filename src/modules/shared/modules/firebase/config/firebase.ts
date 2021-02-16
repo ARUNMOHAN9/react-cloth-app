@@ -42,6 +42,10 @@ class Firebase {
     }
 
     signInWithEmailAndPassword(email: string, password: string) {
+        return app.auth().signInWithEmailAndPassword(email, password);
+    }
+
+    registerWithEmailAndPassword(email: string, password: string) {
         return app.auth().createUserWithEmailAndPassword(email, password)
     }
 

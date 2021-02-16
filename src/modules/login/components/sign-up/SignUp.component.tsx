@@ -25,7 +25,7 @@ const SignUp = () => {
         }
 
         try {
-            const { user } = await firebaseCtx?.signInWithEmailAndPassword(email, password)!;
+            const { user } = await firebaseCtx?.registerWithEmailAndPassword(email, password)!;
 
             firebaseCtx?.addUser({ ...user, displayName });
 

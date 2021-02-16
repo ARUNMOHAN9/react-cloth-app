@@ -11,10 +11,16 @@ const SignIn = () => {
 
     const firebaseCtx = useContext(FirebaseContext);
 
-    const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(email);
         console.log(password);
+
+        try {
+            await firebaseCtx?.signInWithEmailAndPassword(email, password)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const signInWithGoogle = () => {
