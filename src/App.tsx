@@ -1,20 +1,31 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import './App.scss';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Header from './modules/shared/components/header/Header.component';
-import { auth } from './modules/login/services/firebase/firebase.service';
+import { FirebaseContext } from './modules/shared/services/firebase/firebase.service';
+import { AuthChange } from './modules/shared/configs/firebase/firebase';
 
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState<any>(null);
 
+  const firebaseCtx = useContext(FirebaseContext);
+
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
-      console.log(user);
-    });
+    monitorAuthChange();
   }, [])
+
+  const monitorAuthChange = () => {
+    const authChangeData: AuthChange = {
+      nextOrObserver: user => {
+        setCurrentUser(user);
+        console.log(user);
+      }
+    }
+
+    firebaseCtx?.monitorAuthChange(authChangeData);
+  }
 
 
   return (

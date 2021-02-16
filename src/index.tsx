@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createMuiTheme, CssBaseline, StylesProvider, ThemeProvider } from '@material-ui/core';
+import Firebase, { FirebaseContext } from './modules/shared/services/firebase/firebase.service';
+
 
 const theme = createMuiTheme({
   typography: {
@@ -19,7 +21,9 @@ ReactDOM.render(
       <StylesProvider injectFirst>
         <CssBaseline />
         <ThemeProvider theme={theme}>
-          <App />
+          <FirebaseContext.Provider value={new Firebase()}>
+            <App />
+          </FirebaseContext.Provider>
         </ThemeProvider>
       </StylesProvider>
     </Router>

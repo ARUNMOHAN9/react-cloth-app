@@ -1,18 +1,26 @@
 import { Box, Card, CardContent, Container, Grid, TextField } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import CustomButton from '../../../shared/components/custom-btn/CustomBtn.component';
-import { signInWithGoogle } from '../../services/firebase/firebase.service';
+import { FirebaseContext } from '../../../shared/services/firebase/firebase.service';
 
 import './SignIn.styles.scss';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
+
+    const firebaseCtx = useContext(FirebaseContext);
 
     const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(email);
         console.log(password);
+    }
+
+    const signInWithGoogle = () => {
+        firebaseCtx?.signInWithGoogle()
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
     return (

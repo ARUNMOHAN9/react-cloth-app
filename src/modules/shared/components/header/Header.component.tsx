@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,7 +7,7 @@ import { ReactComponent as Logo } from '../../../../assets/images/crown.svg'
 import './Header.styles.scss';
 import { Box, Link } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
-import { auth } from '../../../login/services/firebase/firebase.service';
+import { FirebaseContext } from '../../services/firebase/firebase.service';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,6 +29,14 @@ interface Iprops {
 const Header = ({ currentUser }: Iprops) => {
     const classes = useStyles();
 
+    const firebaseCtx = useContext(FirebaseContext);
+
+    const signOut = () => {
+        firebaseCtx?.signOut()
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="fixed">
@@ -49,7 +57,7 @@ const Header = ({ currentUser }: Iprops) => {
                     <Button color="inherit" size="large">
                         {
                             currentUser
-                                ? <div className="nav-link" onClick={() => auth.signOut()}>Sign Out</div>
+                                ? <div className="nav-link" onClick={() => signOut()}>Sign Out</div>
                                 : <RouterLink className="nav-link" to='/login'>Sign In</RouterLink>
                         }
                     </Button>
