@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, Container, Grid, TextField } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
 import CustomButton from '../../../shared/components/custom-btn/CustomBtn.component';
-import { FirebaseContext } from '../../../shared/services/firebase/firebase.service';
+import { FirebaseContext } from '../../../shared/modules/firebase/services/firebase.service';
 
 import './SignIn.styles.scss';
 

@@ -3,8 +3,8 @@ import './App.scss';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Header from './modules/shared/components/header/Header.component';
-import { FirebaseContext } from './modules/shared/services/firebase/firebase.service';
-import { AuthChange } from './modules/shared/configs/firebase/firebase';
+import { AuthChange } from './modules/shared/modules/firebase/config/firebase';
+import { FirebaseContext } from './modules/shared/modules/firebase/services/firebase.service';
 
 const App = () => {
 

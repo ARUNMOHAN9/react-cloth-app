@@ -7,7 +7,7 @@ import { ReactComponent as Logo } from '../../../../assets/images/crown.svg'
 import './Header.styles.scss';
 import { Box, Link } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
-import { FirebaseContext } from '../../services/firebase/firebase.service';
+import { FirebaseContext } from '../../modules/firebase/services/firebase.service';
 
 const useStyles = makeStyles((theme) => ({
     root: {

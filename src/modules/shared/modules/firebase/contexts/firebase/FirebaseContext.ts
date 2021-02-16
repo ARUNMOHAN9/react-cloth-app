@@ -1,5 +1,6 @@
 import React from 'react';
-import Firebase from '../../services/firebase/firebase.service';
+import { _Firebase as Firebase } from '../../config/firebase';
+
 
 const FirebaseContext = React.createContext<null | Firebase>(null);
 
