@@ -41,6 +41,10 @@ class Firebase {
         return app.auth().signInWithPopup(this.provider);
     }
 
+    signInWithEmailAndPassword(email: string, password: string) {
+        return app.auth().createUserWithEmailAndPassword(email, password)
+    }
+
     monitorAuthChange(authChangeData: AuthChange) {
         const { nextOrObserver, error, completed } = authChangeData;
         return app.auth().onAuthStateChanged(nextOrObserver, error, completed);
