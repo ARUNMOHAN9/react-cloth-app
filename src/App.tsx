@@ -1,10 +1,10 @@
-import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './App.scss';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Header from './modules/shared/components/header/Header.component';
 import { AuthChange } from './modules/shared/modules/firebase/config/firebase';
 import { FirebaseContext } from './modules/shared/modules/firebase/services/firebase.service';
+import Router from './modules/shared/modules/routing/components/Router';
+import ROUTES from './modules/shared/modules/routing/config/routes.config';
 
 const App = () => {
 
@@ -12,8 +12,17 @@ const App = () => {
 
   const firebaseCtx = useContext(FirebaseContext);
 
+  let authMonitor$: any = null;
+  let userSnapshot$: any = null;
+
   useEffect(() => {
     monitorAuthChange();
+
+    return () => {
+      authMonitor$?.unsubscribe();
+      userSnapshot$?.unsubscribe();
+    }
+
   }, [])
 
   const monitorAuthChange = () => {
@@ -24,34 +33,27 @@ const App = () => {
         if (user) {
           const userRef = await firebaseCtx?.addUser(user);
 
-          userRef?.onSnapshot(snapshot => {
+          userSnapshot$ = userRef?.onSnapshot(snapshot => {
             setCurrentUser({
               id: snapshot.id,
               ...snapshot.data()
             });
-            console.log(snapshot);
           });
-
-          console.log(currentUser);
         }
+        console.log(currentUser);
       }
     }
 
-    firebaseCtx?.monitorAuthChange(authChangeData);
+    console.log(currentUser);
+
+    authMonitor$ = firebaseCtx?.monitorAuthChange(authChangeData);
   }
 
   return (
-    <Suspense fallback={<CircularProgress />}>
+    <>
       <Header currentUser={currentUser} />
-      <Switch>
-        <Route path='/' exact>
-          <Redirect to='/home' />
-        </Route>
-        <Route path='/home' component={lazy(() => import('./modules/home'))} />
-        <Route path='/login' component={lazy(() => import('./modules/login'))} />
-        <Route path='/shop' component={lazy(() => import('./modules/shop'))} />
-      </Switch>
-    </Suspense>
+      <Router routes={ROUTES} />
+    </>
   );
 }
 
