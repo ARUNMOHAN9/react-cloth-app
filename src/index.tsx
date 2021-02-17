@@ -3,31 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { createMuiTheme, CssBaseline, StylesProvider, ThemeProvider } from '@material-ui/core';
-import Firebase, { FirebaseContext } from './modules/shared/modules/firebase/services/firebase.service';
+import RootWrapper from './RootWrapper';
 
 
-const theme = createMuiTheme({
-  typography: {
-    // Tell Material-UI what's the font-size on the html element is.
-    htmlFontSize: 10,
-  },
-});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <StylesProvider injectFirst>
-        <CssBaseline />
-        <ThemeProvider theme={theme}>
-          <FirebaseContext.Provider value={new Firebase()}>
-            <App />
-          </FirebaseContext.Provider>
-        </ThemeProvider>
-      </StylesProvider>
-    </Router>
-  </React.StrictMode>,
+  <RootWrapper>
+    <App />
+  </RootWrapper>,
   document.getElementById('root')
 );
 
