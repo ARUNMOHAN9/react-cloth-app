@@ -1,12 +1,12 @@
 import { Container, Card, CardContent, Box, Grid, TextField } from '@material-ui/core';
 import React, { useContext, useRef, useState } from 'react'
-import AlertDialog, { Handle } from '../../../shared/components/alert-dialog/AlertDialog';
+import AlertDialog from '../../../shared/components/alert-dialog/AlertDialog';
 import CustomButton from '../../../shared/components/custom-btn/CustomBtn.component';
 import { FirebaseContext } from '../../../shared/modules/firebase/services/firebase.service';
 
 const SignUp = () => {
 
-    let childRef: Handle<typeof AlertDialog>;
+    const childRef = useRef<null | ((msg: string) => void)>(null)
 
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
@@ -35,6 +35,11 @@ const SignUp = () => {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const openAlert = () => {
+        const msg = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, dolorum vero ad assumenda vel reiciendis obcaecati, alias tempora similique quaerat, soluta quasi hic fugiat excepturi. Accusamus ad totam consequuntur repudiandae!'
+        childRef?.current!(msg);
     }
 
     return (
@@ -93,11 +98,10 @@ const SignUp = () => {
                         </Grid>
                         <Box mb={2} />
                         <CustomButton type="submit" color="secondary" size="medium">Sign Up</CustomButton>
-                        <CustomButton type="button" color="primary" size="medium" onClick={() => { childRef?.handleOpen('something went wrong') }}>Sign Up</CustomButton>
                     </form>
                 </CardContent>
             </Card>
-            <AlertDialog ref={c => childRef = c!} />
+            <AlertDialog parentRef={childRef} />
         </Container>
     )
 }

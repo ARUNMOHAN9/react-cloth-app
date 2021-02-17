@@ -1,26 +1,29 @@
-import React, { useState, forwardRef, useImperativeHandle, ForwardRefExoticComponent, RefAttributes, Ref } from 'react';
+import React, { useState, ForwardRefExoticComponent, RefAttributes, useEffect, MutableRefObject } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-export type Handle<T> = T extends ForwardRefExoticComponent<RefAttributes<infer T2>> ? T2 : never;
+interface IAlertProps {
+    parentRef: MutableRefObject<(msg: string) => void> | MutableRefObject<null>
+}
 
-const AlertDialog = forwardRef((props, ref: Ref<{ handleOpen: (msg: string) => void }>) => {
+const AlertDialog = ({ parentRef }: IAlertProps) => {
 
     const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState('');
 
-    useImperativeHandle(
-        ref,
-        () => ({
-            handleOpen() {
-                setMsg(msg);
-                setOpen(true);
-            }
-        }),
-    )
+    const handleOpen = (msg: string) => {
+        setMsg(msg);
+        setOpen(true);
+    }
+
+    useEffect(() => {
+        if (parentRef) {
+            parentRef.current = handleOpen
+        }
+    }, [])
 
 
     const handleClose = () => {
@@ -35,7 +38,6 @@ const AlertDialog = forwardRef((props, ref: Ref<{ handleOpen: (msg: string) => v
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                {/* <DialogTitle id="alert-dialog-title">{""}</DialogTitle> */}
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         {msg}
@@ -49,6 +51,6 @@ const AlertDialog = forwardRef((props, ref: Ref<{ handleOpen: (msg: string) => v
             </Dialog>
         </div>
     );
-})
+}
 
 export default AlertDialog;
