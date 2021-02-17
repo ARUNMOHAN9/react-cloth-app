@@ -1,9 +1,12 @@
 import { Container, Card, CardContent, Box, Grid, TextField } from '@material-ui/core';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
+import AlertDialog, { Handle } from '../../../shared/components/alert-dialog/AlertDialog';
 import CustomButton from '../../../shared/components/custom-btn/CustomBtn.component';
 import { FirebaseContext } from '../../../shared/modules/firebase/services/firebase.service';
 
 const SignUp = () => {
+
+    let childRef: Handle<typeof AlertDialog>;
 
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
@@ -90,9 +93,11 @@ const SignUp = () => {
                         </Grid>
                         <Box mb={2} />
                         <CustomButton type="submit" color="secondary" size="medium">Sign Up</CustomButton>
+                        <CustomButton type="button" color="primary" size="medium" onClick={() => { childRef?.handleOpen('something went wrong') }}>Sign Up</CustomButton>
                     </form>
                 </CardContent>
             </Card>
+            <AlertDialog ref={c => childRef = c!} />
         </Container>
     )
 }
