@@ -8,5 +8,6 @@ export interface IRoute {
     fallback?: NonNullable<ReactNode> | NonNullable<Component>;
     redirect?: string,
     private?: boolean,
+    preventRenderAfterAuthenticated?: boolean,
     routes?: IRoute[]
 }

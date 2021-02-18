@@ -1,25 +1,49 @@
 import React, { Suspense } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Redirect, Route, RouterProps } from 'react-router-dom';
+import { IState } from '../../../../../redux/interfaces/reducers/root-reducer.interface';
 import { IRoute } from '../interfaces/route.interface';
 
-const RouteWithSubRoutes = (route: IRoute) => {
+interface IProps extends IRoute {
+    currentUser?: any
+}
+const RouteWithSubRoutes = (routeProps: IProps) => {
     /** Authenticated flag */
-    const authenticated: boolean = true;
+
+    const authenticated: boolean = routeProps.currentUser;
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Route
-                path={route.path}
-                render={(props) =>
-                    route.redirect ? <Redirect to={route.redirect} /> :
-                        route.private ? (
-                            authenticated ? route.component &&
-                                <route.component {...props} routes={route.routes} /> : <Redirect to='/login' />
-                        ) : route.component && <route.component {...props} routes={route.routes} />
+                path={routeProps.path}
+                render={
+                    (props) => {
+                        if (routeProps.redirect) {
+                            return <Redirect to={routeProps.redirect} />
+                        }
+
+                        if (routeProps.private) {
+                            if (authenticated) {
+                                return routeProps.component && <routeProps.component {...props} routeProps={routeProps.routes} />;
+                            } else {
+                                return <Redirect to='/login' />;
+                            }
+                        }
+
+                        if (!routeProps.private && authenticated && routeProps.preventRenderAfterAuthenticated) {
+                            return <Redirect to='/home' />;
+                        }
+
+                        return routeProps.component && <routeProps.component {...props} routes={routeProps.routes} />;
+                    }
                 }
             />
         </Suspense>
     );
 };
 
-export default RouteWithSubRoutes;
+const mapStateToProps = ({ user: { currentUser } }: IState) => ({
+    currentUser
+});
+
+export default connect(mapStateToProps, null)(RouteWithSubRoutes);
