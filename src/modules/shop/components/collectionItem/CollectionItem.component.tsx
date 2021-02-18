@@ -1,3 +1,4 @@
+import { Paper } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { addCartItem } from '../../../../redux/cart/cart.actions';
@@ -15,20 +16,22 @@ const CollectionItem = ({ item, addItem }: IProps) => {
     const { name, price, imageUrl } = item;
 
     return (
-        <div className='collection-item'>
-            <div
-                className='image'
-                style={{
-                    backgroundImage: `url(${imageUrl})`
-                }}
-            >
-                <CustomButton variant="contained" color="secondary" className="btn-cust-pos" onClick={() => addItem!(item)}>ADD TO CART</CustomButton>
+        <Paper elevation={5} style={{ padding: '10px' }}>
+            <div className='collection-item'>
+                <div
+                    className='image'
+                    style={{
+                        backgroundImage: `url(${imageUrl})`
+                    }}
+                >
+                    <CustomButton variant="contained" color="secondary" className="btn-cust-pos" onClick={() => addItem!(item)}>ADD TO CART</CustomButton>
+                </div>
+                <div className='collection-footer'>
+                    <span className='name'>{name}</span>
+                    <span className='price'>{price}$</span>
+                </div>
             </div>
-            <div className='collection-footer'>
-                <span className='name'>{name}</span>
-                <span className='price'>{price}</span>
-            </div>
-        </div>
+        </Paper>
     );
 };
 
