@@ -13,7 +13,7 @@ const UserReducer = (currentState: IUserState = INITIAL_STATE, action: UserActio
         case USER_ACTION.SET_CURRENT_USER:
             return {
                 ...currentState,
-                currentUser: payload
+                currentUser: payload.currentUser
             }
 
         default:

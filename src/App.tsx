@@ -46,6 +46,10 @@ const App = ({ setCurrentUser }: IProps) => {
               }
             });
           });
+        } else {
+          setCurrentUser({
+            currentUser: null
+          });
         }
       }
     }
