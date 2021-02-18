@@ -9,5 +9,5 @@ export const switchCartDropdown = (flag: boolean): ICartAction => ({
 
 export const addCartItem = (cartItem: IProductItem): ICartAction => ({
     type: CART_ACTION.ADD_ITEM,
-    payload: { cartItems: [cartItem] }
+    payload: { cartItems: [{ ...cartItem, quantity: 0 }] }
 });

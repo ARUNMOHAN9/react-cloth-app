@@ -1,7 +1,8 @@
 import { CART_ACTION } from './cart-action.enum';
 import { ICartAction, ICartState } from './cart-reducer.interface'
+import { addItemToCart } from './utilities/add-item';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: ICartState = {
     isCartOpen: false,
     cartItems: []
 }
@@ -18,13 +19,7 @@ const CartReducer = (currentState: ICartState = INITIAL_STATE, action: ICartActi
             }
 
         case CART_ACTION.ADD_ITEM:
-            if (!payload?.cartItems?.length) {
-                return currentState;
-            }
-            return {
-                ...currentState,
-                cartItems: [...currentState.cartItems, ...payload.cartItems]
-            }
+            return addItemToCart(currentState, payload?.cartItems![0])
 
         default:
             return currentState;

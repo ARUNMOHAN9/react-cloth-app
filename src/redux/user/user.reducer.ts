@@ -1,7 +1,7 @@
 import { USER_ACTION } from './user-action.enum';
 import { IUserState, IUserAction } from './user-reducer.interface';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: IUserState = {
     currentUser: null
 }
 
