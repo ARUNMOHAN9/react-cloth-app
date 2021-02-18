@@ -11,6 +11,7 @@ import { Box, Link } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { FirebaseContext } from '../../modules/firebase/services/firebase.service';
 import { IState } from '../../../../redux/interfaces/reducers/root-reducer.interface';
+import CartIcon from '../../../shop/components/cart-icon/CartIcon.component';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,6 +65,8 @@ const Header = ({ currentUser }: Iprops) => {
                                 : <RouterLink className="nav-link" to='/login'>Sign In</RouterLink>
                         }
                     </Button>
+                    <Box ml={2} />
+                    <CartIcon />
                 </Toolbar>
             </AppBar>
             <div className={classes.offset} />

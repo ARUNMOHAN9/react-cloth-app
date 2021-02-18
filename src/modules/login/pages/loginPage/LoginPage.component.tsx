@@ -1,4 +1,4 @@
-import { Box, Container, createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
+import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
 import SignIn from '../../components/sign-in/SignIn.component';
 import SignUp from '../../components/sign-up/SignUp.component';
