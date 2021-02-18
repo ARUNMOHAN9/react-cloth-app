@@ -1,0 +1,3 @@
+export enum CART_ACTION {
+    SWITCH_CART_DROPDOWN = 1
+}

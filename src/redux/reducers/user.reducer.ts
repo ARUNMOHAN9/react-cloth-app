@@ -1,11 +1,11 @@
 import { USER_ACTION } from '../enums/user-action.enum';
-import { IUserState, UserAction } from '../interfaces/reducers/user-reducer.interface';
+import { IUserState, IUserAction } from '../interfaces/reducers/user-reducer.interface';
 
 const INITIAL_STATE = {
     currentUser: null
 }
 
-const UserReducer = (currentState: IUserState = INITIAL_STATE, action: UserAction): IUserState => {
+const UserReducer = (currentState: IUserState = INITIAL_STATE, action: IUserAction): IUserState => {
 
     const { type, payload } = action;
 

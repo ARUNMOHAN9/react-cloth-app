@@ -4,7 +4,7 @@ export interface IUserState {
     currentUser: any;
 }
 
-export interface UserAction {
+export interface IUserAction {
     type: USER_ACTION;
     payload: Partial<IUserState>
 }

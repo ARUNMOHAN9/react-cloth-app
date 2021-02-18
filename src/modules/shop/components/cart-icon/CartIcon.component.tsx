@@ -1,17 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { ReactComponent as ShoppingIcon } from '../../../../assets/images/shopping-bag.svg';
+import { switchCartDropdown } from '../../../../redux/actions/cart.actions';
+import { IState } from '../../../../redux/interfaces/reducers/root-reducer.interface';
 import CartDropdown from '../cart/CartDropdown.component';
 
 import './CartIcon.styles.scss';
 
-const CartIcon = () => {
+interface IProps {
+    isCartOpen?: boolean;
+    switchCartDD?: (flag: boolean) => void
+}
+
+const CartIcon = ({ isCartOpen, switchCartDD }: IProps) => {
+
+
     return (
-        <div className='cart-icon'>
-            <ShoppingIcon className='shopping-icon' />
-            <span className='item-count'>0</span>
-            <CartDropdown />
+        <div>
+            <div className='cart-icon' onClick={() => switchCartDD!(!isCartOpen)}>
+                <ShoppingIcon className='shopping-icon' />
+                <span className='item-count'>0</span>
+            </div>
+            {isCartOpen ? <CartDropdown /> : null}
         </div>
     )
 }
 
-export default CartIcon;
+const mapStateToProps = ({ cart: { isCartOpen } }: IState) => ({
+    isCartOpen
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+    switchCartDD: (flag: boolean) => dispatch(switchCartDropdown({ isCartOpen: flag }))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
