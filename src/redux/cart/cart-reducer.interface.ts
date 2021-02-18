@@ -2,7 +2,7 @@ import { IProductItem } from '../../modules/shared/interfaces/product-item.inter
 import { CART_ACTION } from './cart-action.enum';
 
 export interface IStateProductItem extends IProductItem {
-    quantity: number;
+    quantity?: number;
 }
 
 export interface ICartState {

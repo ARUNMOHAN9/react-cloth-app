@@ -18,7 +18,7 @@ export const removeItemToCart = (currentState: ICartState, newItem: IStateProduc
                 cartItems: [...currentCartList]
             };
         } else {
-            currentCartList[itemIndex].quantity--;
+            selectedItem.quantity = (selectedItem.quantity || 0) - 1;
             return {
                 ...currentState,
                 cartItems: currentCartList

@@ -11,7 +11,7 @@ export const addItemToCart = (currentState: ICartState, newItem: IStateProductIt
     const itemExists = currentCartList.find(item => item.id === newItem.id);
 
     if (itemExists) {
-        itemExists.quantity++;
+        itemExists.quantity = (itemExists.quantity || 0) + 1;
         result = [...currentCartList];
     } else {
         result = [...currentCartList, { ...newItem, quantity: 1 }];
