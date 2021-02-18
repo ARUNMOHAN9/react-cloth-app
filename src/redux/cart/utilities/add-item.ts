@@ -12,9 +12,9 @@ export const addItemToCart = (currentState: ICartState, newItem: IStateProductIt
 
     if (itemExists) {
         itemExists.quantity++;
-        result = [...currentCartList]
+        result = [...currentCartList];
     } else {
-        result = [...currentCartList, { ...newItem, quantity: 1 }]
+        result = [...currentCartList, { ...newItem, quantity: 1 }];
     }
 
     return {
