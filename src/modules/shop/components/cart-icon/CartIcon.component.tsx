@@ -31,7 +31,7 @@ const mapStateToProps = ({ cart: { isCartOpen } }: IState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-    switchCartDD: (flag: boolean) => dispatch(switchCartDropdown({ isCartOpen: flag }))
+    switchCartDD: (flag: boolean) => dispatch(switchCartDropdown(flag))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

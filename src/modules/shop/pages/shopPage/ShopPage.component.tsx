@@ -4,12 +4,15 @@ import CollectionPreview from '../../components/collectionPreview/CollectionPrev
 
 import './ShopPage.styles.scss';
 
-const ShopPage = () => (
-    <div className='shop-page'>
-        {SHOP_DATA.map(({ id, ...otherCollectionProps }) => (
-            <CollectionPreview key={id} {...otherCollectionProps} />
-        ))}
-    </div>
-);
+const ShopPage = () => {
+
+    return (
+        <div className='shop-page'>
+            {SHOP_DATA.map(({ id, ...otherCollectionProps }) => (
+                <CollectionPreview key={id} {...otherCollectionProps} />
+            ))}
+        </div>
+    );
+};
 
 export default ShopPage;

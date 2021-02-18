@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
 import './App.scss';
 import Header from './modules/shared/components/header/Header.component';
+import { IUser } from './modules/shared/interfaces/user.interface';
+import { User } from './modules/shared/models/user.model';
 import { AuthChange } from './modules/shared/modules/firebase/config/firebase';
 import { FirebaseContext } from './modules/shared/modules/firebase/services/firebase.service';
 import Router from './modules/shared/modules/routing/components/Router';
@@ -10,7 +12,7 @@ import { setCurrentUser } from './redux/actions/user.actions';
 
 
 interface IProps {
-  setCurrentUser: typeof setCurrentUser
+  setCurrentUser: (user: IUser | null) => void
 }
 
 const App = ({ setCurrentUser }: IProps) => {
@@ -39,17 +41,17 @@ const App = ({ setCurrentUser }: IProps) => {
           const userRef = await firebaseCtx?.addUser(user);
 
           userSnapshot$ = userRef?.onSnapshot(snapshot => {
-            setCurrentUser({
-              currentUser: {
-                id: snapshot.id,
-                ...snapshot.data()
-              }
-            });
+            const dbUserData = snapshot.data();
+
+            setCurrentUser(new User({
+              id: snapshot.id,
+              displayName: dbUserData?.displayName,
+              email: dbUserData?.email,
+              createdAt: dbUserData?.createdAt,
+            }));
           });
         } else {
-          setCurrentUser({
-            currentUser: null
-          });
+          setCurrentUser(null);
         }
       }
     }
@@ -66,7 +68,7 @@ const App = ({ setCurrentUser }: IProps) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
+  setCurrentUser: (user: IUser | null) => dispatch(setCurrentUser(user))
 });
 
 export default connect(null, mapDispatchToProps)(App);
