@@ -1,3 +1,3 @@
 export enum USER_ACTION {
-    SET_CURRENT_USER = 1
+    SET_CURRENT_USER = 'SET_CURRENT_USER'
 }
