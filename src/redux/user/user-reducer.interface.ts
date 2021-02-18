@@ -1,5 +1,5 @@
-import { IUser } from '../../../modules/shared/interfaces/user.interface';
-import { USER_ACTION } from '../../enums/user-action.enum';
+import { IUser } from '../../modules/shared/interfaces/user.interface';
+import { USER_ACTION } from './user-action.enum';
 
 export interface IUserState {
     currentUser: IUser | null;

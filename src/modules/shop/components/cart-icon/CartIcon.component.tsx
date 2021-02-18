@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ReactComponent as ShoppingIcon } from '../../../../assets/images/shopping-bag.svg';
-import { switchCartDropdown } from '../../../../redux/actions/cart.actions';
-import { IState } from '../../../../redux/interfaces/reducers/root-reducer.interface';
+import { switchCartDropdown } from '../../../../redux/cart/cart.actions';
+import { IState } from '../../../../redux/root-reducer.interface';
 import CartDropdown from '../cart/CartDropdown.component';
 
 import './CartIcon.styles.scss';

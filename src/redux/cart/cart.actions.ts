@@ -1,6 +1,6 @@
 import { IProductItem } from '../../modules/shared/interfaces/product-item.interface';
-import { CART_ACTION } from '../enums/cart-action.enum'
-import { ICartAction, ICartState } from '../interfaces/reducers/cart-reducer.interface'
+import { CART_ACTION } from './cart-action.enum'
+import { ICartAction } from './cart-reducer.interface'
 
 export const switchCartDropdown = (flag: boolean): ICartAction => ({
     type: CART_ACTION.SWITCH_CART_DROPDOWN,

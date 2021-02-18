@@ -10,7 +10,7 @@ import './Header.styles.scss';
 import { Box, Link } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { FirebaseContext } from '../../modules/firebase/services/firebase.service';
-import { IState } from '../../../../redux/interfaces/reducers/root-reducer.interface';
+import { IState } from '../../../../redux/root-reducer.interface';
 import CartIcon from '../../../shop/components/cart-icon/CartIcon.component';
 
 const useStyles = makeStyles((theme) => ({

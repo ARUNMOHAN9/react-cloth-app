@@ -1,5 +1,5 @@
-import { IProductItem } from '../../../modules/shared/interfaces/product-item.interface';
-import { CART_ACTION } from '../../enums/cart-action.enum';
+import { IProductItem } from '../../modules/shared/interfaces/product-item.interface';
+import { CART_ACTION } from './cart-action.enum';
 
 export interface ICartState {
     isCartOpen: boolean,

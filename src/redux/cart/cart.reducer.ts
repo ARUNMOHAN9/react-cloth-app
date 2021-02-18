@@ -1,5 +1,5 @@
-import { CART_ACTION } from '../enums/cart-action.enum';
-import { ICartAction, ICartState } from '../interfaces/reducers/cart-reducer.interface'
+import { CART_ACTION } from './cart-action.enum';
+import { ICartAction, ICartState } from './cart-reducer.interface'
 
 const INITIAL_STATE = {
     isCartOpen: false,

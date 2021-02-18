@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, RouterProps } from 'react-router-dom';
-import { IState } from '../../../../../redux/interfaces/reducers/root-reducer.interface';
+import { IState } from '../../../../../redux/root-reducer.interface';
 import { IRoute } from '../interfaces/route.interface';
 
 interface IProps extends IRoute {

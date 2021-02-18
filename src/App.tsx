@@ -8,7 +8,7 @@ import { AuthChange } from './modules/shared/modules/firebase/config/firebase';
 import { FirebaseContext } from './modules/shared/modules/firebase/services/firebase.service';
 import Router from './modules/shared/modules/routing/components/Router';
 import ROUTES from './modules/shared/modules/routing/config/routes.config';
-import { setCurrentUser } from './redux/actions/user.actions';
+import { setCurrentUser } from './redux/user/user.actions';
 
 
 interface IProps {

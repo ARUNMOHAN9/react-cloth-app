@@ -1,5 +1,5 @@
-import { USER_ACTION } from '../enums/user-action.enum';
-import { IUserState, IUserAction } from '../interfaces/reducers/user-reducer.interface';
+import { USER_ACTION } from './user-action.enum';
+import { IUserState, IUserAction } from './user-reducer.interface';
 
 const INITIAL_STATE = {
     currentUser: null
