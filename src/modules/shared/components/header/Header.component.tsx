@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { connect } from 'react-redux';
+
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,6 +10,7 @@ import './Header.styles.scss';
 import { Box, Link } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { FirebaseContext } from '../../modules/firebase/services/firebase.service';
+import { IState } from '../../../../redux/interfaces/reducers/root-reducer.interface';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Iprops {
-    currentUser: any;
+    currentUser?: any;
 }
 
 const Header = ({ currentUser }: Iprops) => {
@@ -68,4 +71,9 @@ const Header = ({ currentUser }: Iprops) => {
     );
 }
 
-export default Header;
+
+const mapStateToProps = ({ user: { currentUser } }: IState) => ({
+    currentUser
+});
+
+export default connect(mapStateToProps, null)(Header);
