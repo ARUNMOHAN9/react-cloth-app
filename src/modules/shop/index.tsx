@@ -1,10 +1,13 @@
 import React from 'react';
-import ShopPage from './pages/shopPage/ShopPage.component';
+import Router from '../shared/modules/routing/components/Router';
+import { IRoute } from '../shared/modules/routing/interfaces/route.interface';
 
-const Shop = () => {
-    return (
-        <ShopPage />
-    );
+interface IProps {
+    routeProps: IRoute[];
+}
+
+const Shop = ({ routeProps }: IProps) => {
+    return (<Router routes={routeProps} />);
 }
 
 export default Shop;
