@@ -13,14 +13,14 @@ const DirectoryComponent = () => {
                 SECTIONS.map(({ id, ...otherProps }, index) => {
                     if (index > 2) {
                         return (
-                            <Grid item xs={12} md={6}>
-                                <MenuItemComponent key={id} {...otherProps} />
+                            <Grid item xs={12} md={6} key={id}>
+                                <MenuItemComponent {...otherProps} />
                             </Grid>
                         )
                     } else {
                         return (
-                            <Grid item xs={12} md={4}>
-                                <MenuItemComponent key={id} {...otherProps} />
+                            <Grid item xs={12} md={4} key={id}>
+                                <MenuItemComponent {...otherProps} />
                             </Grid>
                         )
                     }

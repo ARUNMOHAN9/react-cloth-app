@@ -17,8 +17,8 @@ const CollectionPreview = ({ title, items }: Omit<IProps, 'id'>) => (
             {items
                 .filter((_, idx) => idx < 4)
                 .map((item) => (
-                    <Grid item xs={12} sm={6} md={3}>
-                        <CollectionItem key={item.id} item={item} />
+                    <Grid item xs={12} sm={6} md={3} key={item.id}>
+                        <CollectionItem item={item} />
                     </Grid>
                 ))}
         </Grid>

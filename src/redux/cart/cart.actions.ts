@@ -12,7 +12,12 @@ export const addCartItem = (cartItem: IProductItem): ICartAction => ({
     payload: { cartItems: [{ ...cartItem }] }
 });
 
-export const removeCartItem = (cartItem: IProductItem): ICartAction => ({
+export const deleteCartItem = (cartItem: IProductItem): ICartAction => ({
     type: CART_ACTION.DELETE_ITEM,
+    payload: { cartItems: [{ ...cartItem }] }
+});
+
+export const removeCartItem = (cartItem: IProductItem): ICartAction => ({
+    type: CART_ACTION.REMOVE_ITEM,
     payload: { cartItems: [{ ...cartItem }] }
 });
