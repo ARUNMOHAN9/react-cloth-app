@@ -3,7 +3,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Firebase, { FirebaseContext } from './modules/shared/modules/firebase/services/firebase.service';
-import store from './redux/store';
+import { store, persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 interface IProps {
     children: JSX.Element
@@ -22,14 +23,16 @@ const RootWrapper = ({ children }: IProps) => {
             <Provider store={store}>
                 <React.StrictMode>
                     <Router>
-                        <StylesProvider injectFirst>
-                            <CssBaseline />
-                            <ThemeProvider theme={theme}>
-                                <FirebaseContext.Provider value={new Firebase()}>
-                                    {children}
-                                </FirebaseContext.Provider>
-                            </ThemeProvider>
-                        </StylesProvider>
+                        <PersistGate persistor={persistor}>
+                            <StylesProvider injectFirst>
+                                <CssBaseline />
+                                <ThemeProvider theme={theme}>
+                                    <FirebaseContext.Provider value={new Firebase()}>
+                                        {children}
+                                    </FirebaseContext.Provider>
+                                </ThemeProvider>
+                            </StylesProvider>
+                        </PersistGate>
                     </Router>
                 </React.StrictMode>
             </Provider>

@@ -66,7 +66,7 @@ const Header = ({ currentUser }: Iprops) => {
                         }
                     </Button>
                     <Box ml={2} />
-                    <CartIcon />
+                    {currentUser ? <CartIcon /> : null}
                 </Toolbar>
             </AppBar>
             <div className={classes.offset} />
