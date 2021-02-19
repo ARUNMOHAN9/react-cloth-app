@@ -13,8 +13,6 @@ const SignIn = () => {
 
     const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(email);
-        console.log(password);
 
         try {
             await firebaseCtx?.signInWithEmailAndPassword(email, password)
@@ -25,7 +23,7 @@ const SignIn = () => {
 
     const signInWithGoogle = () => {
         firebaseCtx?.signInWithGoogle()
-            .then(res => console.log(res))
+            .then(res => console.log(null))
             .catch(err => console.log(err))
     }
 

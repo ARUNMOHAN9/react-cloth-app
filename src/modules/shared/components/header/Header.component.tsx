@@ -37,7 +37,7 @@ const Header = ({ currentUser }: Iprops) => {
 
     const signOut = () => {
         firebaseCtx?.signOut()
-            .then(res => console.log(res))
+            .then(res => console.log(null))
             .catch(err => console.log(err))
     }
 
