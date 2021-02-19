@@ -1,30 +1,25 @@
-import { ICartState, IStateProductItem } from '../cart-reducer.interface'
+import { IStateProductItem } from '../cart-reducer.interface'
 
-export const removeItemToCart = (currentState: ICartState, newItem: IStateProductItem): ICartState => {
-    if (!newItem) {
-        return currentState;
+export const removeItemToCart = (cartItems: IStateProductItem[], itemToRemove: IStateProductItem): IStateProductItem[] => {
+    if (!itemToRemove) {
+        return cartItems;
     }
 
-    const currentCartList = currentState.cartItems;
-    const itemIndex = currentCartList.findIndex(item => item.id === newItem.id);
+    const existingCartItem = cartItems.find(item => item.id === itemToRemove.id);
 
-    if (itemIndex > -1) {
-        const selectedItem = currentCartList[itemIndex];
-
-        if (selectedItem.quantity === 1) {
-            currentCartList.splice(itemIndex, 1)
-            return {
-                ...currentState,
-                cartItems: [...currentCartList]
-            };
-        } else {
-            selectedItem.quantity = (selectedItem.quantity || 0) - 1;
-            return {
-                ...currentState,
-                cartItems: currentCartList
-            };
-        }
-    } else {
-        return currentState;
+    if (existingCartItem) {
+        const result: IStateProductItem[] = [];
+        cartItems.forEach(item => {
+            if (item.id === itemToRemove.id) {
+                if (item.quantity && item.quantity > 1) {
+                    result.push({ ...item, quantity: item.quantity - 1 })
+                }
+            } else {
+                result.push({ ...item })
+            }
+        });
+        return result;
     }
+
+    return [...cartItems, { ...itemToRemove, quantity: 1 }]
 }

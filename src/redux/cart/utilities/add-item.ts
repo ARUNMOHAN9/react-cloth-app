@@ -1,24 +1,21 @@
-import { ICartState, IStateProductItem } from '../cart-reducer.interface'
+import { IStateProductItem } from '../cart-reducer.interface'
 
-export const addItemToCart = (currentState: ICartState, newItem: IStateProductItem): ICartState => {
-    if (!newItem) {
-        return currentState;
+export const addItemToCart = (cartItems: IStateProductItem[], itemToAdd: IStateProductItem): IStateProductItem[] => {
+    if (!itemToAdd) {
+        return cartItems;
     }
 
-    const currentCartList = currentState.cartItems;
-    let result: IStateProductItem[] = [];
+    const existingCartItem = cartItems.find(item => item.id === itemToAdd.id);
 
-    const itemExists = currentCartList.find(item => item.id === newItem.id);
-
-    if (itemExists) {
-        itemExists.quantity = (itemExists.quantity || 0) + 1;
-        result = [...currentCartList];
-    } else {
-        result = [...currentCartList, { ...newItem, quantity: 1 }];
+    if (existingCartItem) {
+        return cartItems.map(item => {
+            if (item.id === itemToAdd.id) {
+                return { ...item, quantity: (item.quantity || 0) + 1 }
+            } else {
+                return item;
+            }
+        });
     }
 
-    return {
-        ...currentState,
-        cartItems: result
-    };
+    return [...cartItems, { ...itemToAdd, quantity: 1 }]
 }

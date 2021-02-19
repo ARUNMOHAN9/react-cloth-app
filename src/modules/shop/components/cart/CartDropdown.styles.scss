@@ -11,6 +11,16 @@
     right: 20px;
     z-index: 5;
 
+    .cust-link {
+        text-decoration: none;
+        color: white;
+    }
+
+    .empty-message {
+        font-size: 15px;
+        margin: 50px auto;
+    }
+
     .cart-items {
         height: 240px;
         display: flex;

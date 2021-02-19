@@ -26,6 +26,12 @@ const ROUTES: IRoute[] = [
         key: 'SHOP_PAGE',
         private: true,
         component: lazy(() => import('../../../../shop')),
+    },
+    {
+        path: '/checkout',
+        key: 'CHECKOUT_PAGE',
+        private: true,
+        component: lazy(() => import('../../../../checkout')),
     }
 ];
 

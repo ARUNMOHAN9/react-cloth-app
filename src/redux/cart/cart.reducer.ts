@@ -20,10 +20,16 @@ const CartReducer = (currentState: ICartState = INITIAL_STATE, action: ICartActi
             }
 
         case CART_ACTION.ADD_ITEM:
-            return addItemToCart(currentState, payload?.cartItems![0]);
+            return {
+                ...currentState,
+                cartItems: addItemToCart(currentState.cartItems, payload.cartItems![0])
+            }
 
         case CART_ACTION.DELETE_ITEM:
-            return removeItemToCart(currentState, payload?.cartItems![0])
+            return {
+                ...currentState,
+                cartItems: removeItemToCart(currentState.cartItems, payload?.cartItems![0])
+            }
 
         default:
             return currentState;
