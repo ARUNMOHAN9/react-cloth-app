@@ -1,17 +1,27 @@
 import React from 'react';
 
 import './CollectionOverview.styles.scss';
-import SHOP_DATA from '../../../../assets/data/shop.data';
 import CollectionPreview from '../collectionPreview/CollectionPreview.component';
+import { connect } from 'react-redux';
+import { IState } from '../../../../redux/root-reducer.interface';
+import { IProductCollection } from '../../../../redux/shop/shop-reducer.interface';
 
-const CollectionOverview = () => {
+interface IProps {
+    collections: IProductCollection[];
+}
+
+const CollectionOverview = ({ collections }: IProps) => {
     return (
         <div>
-            {SHOP_DATA.map(({ id, ...otherCollectionProps }) => (
+            {collections.map(({ id, ...otherCollectionProps }) => (
                 <CollectionPreview key={id} {...otherCollectionProps} />
             ))}
         </div>
     )
 }
 
-export default CollectionOverview
+const mapStateToProps = ({ shop: { collections } }: IState) => ({
+    collections
+});
+
+export default connect(mapStateToProps)(CollectionOverview);

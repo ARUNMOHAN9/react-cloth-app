@@ -1,7 +1,9 @@
 import { Container, Grid } from '@material-ui/core';
 import React from 'react';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import SHOP_DATA from '../../../../assets/data/shop.data';
+import { IState } from '../../../../redux/root-reducer.interface';
+import { IProductCollection } from '../../../../redux/shop/shop-reducer.interface';
 
 import CollectionItem from '../../components/collectionItem/CollectionItem.component';
 
@@ -12,14 +14,15 @@ interface MatchParams {
 }
 
 interface IProps extends RouteComponentProps<MatchParams> {
+    collections: IProductCollection[];
 }
 
 
-const CategoryPage = ({ match: { params } }: IProps) => {
+const CategoryPage = ({ match: { params }, collections }: IProps) => {
 
     const { categoryId } = params;
 
-    const selectedCategory = SHOP_DATA.find(elem => elem.routeName === categoryId);
+    const selectedCategory = collections.find(elem => elem.routeName === categoryId);
 
     let result = <div>No items found</div>;
 
@@ -38,4 +41,8 @@ const CategoryPage = ({ match: { params } }: IProps) => {
     return result;
 };
 
-export default CategoryPage;
+const mapStateToProps = ({ shop: { collections } }: IState) => ({
+    collections
+});
+
+export default connect(mapStateToProps)(CategoryPage);

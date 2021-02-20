@@ -6,6 +6,7 @@ import { IState } from './root-reducer.interface';
 import CartReducer from './cart/cart.reducer';
 import UserReducer from './user/user.reducer';
 import CategoryReducer from './category/category.reducer';
+import ShopReducer from './shop/shop.reducer';
 
 const persistConfig = {
     key: 'root',
@@ -16,7 +17,8 @@ const persistConfig = {
 const rootReducer = combineReducers<IState>({
     user: UserReducer,
     cart: CartReducer,
-    category: CategoryReducer
+    category: CategoryReducer,
+    shop: ShopReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
