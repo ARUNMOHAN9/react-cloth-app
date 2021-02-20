@@ -1,15 +1,20 @@
-import SHOP_DATA from '../../assets/data/shop.data';
+import { SHOP_ACTION } from './shop-action.enum';
 import { IShopAction, IShopState } from './shop-reducer.interface';
 
 const INITIAL_STATE = {
-    collections: SHOP_DATA
+    collections: []
 };
 
-const ShopReducer = (currentState: IShopState = INITIAL_STATE, action: IShopAction) => {
+const ShopReducer = (currentState: IShopState = INITIAL_STATE, action: IShopAction): IShopState => {
 
     const { type, payload } = action;
 
     switch (type) {
+        case SHOP_ACTION.UPDATE_COLLECTION:
+            return {
+                ...currentState,
+                collections: payload.collections || []
+            }
         default:
             return currentState;
     }

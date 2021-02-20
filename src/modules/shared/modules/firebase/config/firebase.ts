@@ -101,6 +101,26 @@ class Firebase {
         }
         return userRef;
     }
+
+    getCollections(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const collectionRef = app.firestore().collection('collections');
+            collectionRef.onSnapshot(async snapShop => {
+                const transformedCollection = snapShop.docs.map((doc) => {
+                    const { title, items } = doc.data();
+
+                    return {
+                        routeName: encodeURI(title.toLowerCase()),
+                        id: doc.id,
+                        title,
+                        items,
+                    };
+                });
+
+                resolve(transformedCollection);
+            });
+        });
+    }
 }
 
 export { Firebase as _Firebase };

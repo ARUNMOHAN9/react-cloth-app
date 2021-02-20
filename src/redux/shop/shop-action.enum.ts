@@ -1,3 +1,3 @@
 export enum SHOP_ACTION {
-
+    UPDATE_COLLECTION = 'UPDATE_COLLECTION'
 }
