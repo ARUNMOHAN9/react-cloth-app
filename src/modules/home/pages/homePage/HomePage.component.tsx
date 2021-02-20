@@ -1,14 +1,13 @@
 import DirectoryComponent from '../../components/directory/Directory.component';
 import React from 'react'
 
-import './HomePage.styles.scss';
-import { Container } from '@material-ui/core';
+import { HomePageContainer } from './HomePage.styles';
 
 const HomePage = () => (
-    <Container maxWidth="xl" className='homepage'>
+    <HomePageContainer maxWidth="xl">
         <h1>Welcome to my Homepage</h1>
         <DirectoryComponent />
-    </Container>
+    </HomePageContainer>
 );
 
 export default HomePage;
