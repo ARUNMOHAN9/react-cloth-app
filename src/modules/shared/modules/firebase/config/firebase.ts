@@ -37,6 +37,22 @@ class Firebase {
         return provider;
     }
 
+    addCollectionAndDocuments = async (
+        collectionKey: string,
+        objectsToAdd: any[]
+    ) => {
+        const collectionRef = app.firestore().collection(collectionKey);
+
+        const batch = app.firestore().batch();
+        objectsToAdd.forEach((obj) => {
+            const newDocRef = collectionRef.doc();
+            batch.set(newDocRef, obj);
+        });
+
+        return await batch.commit();
+    };
+
+
     signInWithGoogle() {
         return app.auth().signInWithPopup(this.provider);
     }
