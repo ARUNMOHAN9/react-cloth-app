@@ -105,7 +105,7 @@ class Firebase {
     getCollections(): Promise<any> {
         return new Promise((resolve, reject) => {
             const collectionRef = app.firestore().collection('collections');
-            collectionRef.onSnapshot(async snapShop => {
+            const unsubscribe$ = collectionRef.onSnapshot(async snapShop => {
                 const transformedCollection = snapShop.docs.map((doc) => {
                     const { title, items } = doc.data();
 
@@ -118,7 +118,9 @@ class Firebase {
                 });
 
                 resolve(transformedCollection);
-            });
+            },
+                () => reject(false)
+            );
         });
     }
 }

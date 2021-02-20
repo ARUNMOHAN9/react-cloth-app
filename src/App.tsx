@@ -26,8 +26,8 @@ const App = ({ setCurrentUser }: IProps) => {
     monitorAuthChange();
 
     return () => {
-      authMonitor$?.unsubscribe();
-      userSnapshot$?.unsubscribe();
+      authMonitor$ && authMonitor$();
+      userSnapshot$ && userSnapshot$();
     }
 
   }, [])
