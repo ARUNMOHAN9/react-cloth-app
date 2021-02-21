@@ -15,7 +15,9 @@ export interface IProductCollection {
 }
 
 export interface IShopState {
-    collections: IProductCollection[]
+    collections: IProductCollection[],
+    isFetching: boolean,
+    errorMsg: any
 }
 
 export interface IShopAction {
